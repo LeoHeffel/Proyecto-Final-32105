@@ -10,7 +10,7 @@ const routerProductos = Router()
 
 routerProductos.get('/',  auth,  ProductoService.GET)
 
-//routerProductos.get('/:id', auth,  ProductoService.GETID )
+
 routerProductos.get('/:selector', auth,  ProductoService.GETSEL )
 
 routerProductos.post('/',  auth, isAdmin,  ProductoService.POST)

@@ -53,8 +53,8 @@ export const GETCAT = async (req, res) => {
 
 export const GETSEL = async (req, res) => {
         const { selector } = req.params
-        const select= selector.slice(0,2)
-        if(select==63){
+       // const select= selector.slice(0,2)
+        if(selector.length===24){
             GETID(req,res)
         }else{
             GETCAT(req,res)
