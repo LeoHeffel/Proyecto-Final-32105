@@ -1,17 +1,18 @@
 import logguer from '../utils/logger.js'
 import daos from '../daos/DAOFactory.js'
-
+import {getProds,finalizar} from '../utils/auxFunc.js'
 const dbCarrito= daos.DAOcarritos
 const DB = daos.DAOproductos
-const {addCart} =daos.DAOusers
+
 
 export const GETID =async (req,res)=>{
     try{
         const {id}=req.params
         const data = await dbCarrito.getById(id)
+        const productos = await getProds(data.productos)
         if(data){
             logguer.info(`lista de productos en el carrito enviada `)
-           res.status(200).send(data.productos)  
+           res.status(200).send(productos)  
         }else{
             logguer.warn(`carrito no encontrado `)
             res.status(404).send({error:'carrito no encontrado'})
@@ -24,11 +25,12 @@ export const GETID =async (req,res)=>{
 
 export const POSTFIN = async (req,res)=>{
     try{
-        const {id}=req.params
+        const idCarrito=req.params.id
         const user=req.user
-        const resp= await dbCarrito.finalizarCompra(id,user)
+        const prodIds= await dbCarrito.finalizarCompra(idCarrito,user)
+        const finalizada= await finalizar(prodIds,user,idCarrito)
         logguer.info(`compra finalizada `)
-        res.status(200).send(resp)  
+        res.status(200).send(finalizada)  
     }catch(err){
         logguer.error(`error al finalizar compra ${err} `)
         res.status(404).send({error:err})
@@ -37,14 +39,14 @@ export const POSTFIN = async (req,res)=>{
 
 export const POST=async(req,res)=>{
     try{
-        const idUser = req.user._id
-        const idCarrito= await dbCarrito.save()
-        addCart(idCarrito,idUser)
+        const emailUser = req.user.email
+        const dir= req.user.address
+        const idCarrito= await dbCarrito.save({email:emailUser,direccion:dir})
         req.user.carts= idCarrito
-        logguer.info(`se creo un nuevo carrito id ${idCarrito} para el usuario ${idUser} `)
+        logguer.info(`se creo un nuevo carrito id ${idCarrito} para el usuario ${emailUser} `)
         res.send({idCarrito})
     }catch(err){
-        logguer.error(`error al crear carrito para el usuario ${idUser} : ${err}`)
+        logguer.error(`error al crear carrito para el usuario ${emailUser} : ${err}`)
             res.send({error: true, err})
         }
 }

@@ -128,7 +128,7 @@ const viewCarrito = `
             <td class="table-info">{{this.producto.nombre}}</td>
             <td class="table-success"> {{this.cant}}</td>
             <td class="table-success"> {{this.producto.precio}}</td>
-            <td class="table-danger"><button  id="{{this.producto.id}}" class="btn btn-danger comprar">Quitar uno del Carrito</button></td>
+            <td class="table-danger"><button  id="{{this.producto._id}}" class="btn btn-danger comprar">Quitar uno del Carrito</button></td>
         </tr>
     {{/each}}
 </table>
@@ -277,9 +277,8 @@ const mostrarCarrito = () => {
   fetch(`/api/carrito/${idCarrito}/productos`)
     .then((response) => response.json())
     .then((json) => {
-      const carrito = Object.assign({}, json)
       const prodController = Handlebars.compile(viewCarrito)
-      const prodHtml = prodController({ carrito })
+      const prodHtml = prodController({ carrito:json })
       document.getElementById('divProductos').innerHTML = prodHtml
       botonCompra()
       botonesQuitar()

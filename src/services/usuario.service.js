@@ -2,7 +2,7 @@ import url from 'url'
 import { join } from 'path'
 import logger from "../utils/logger.js"
 import { sendUserDTO } from '../dtos/usuario.dto.js'
-import checkCart from '../utils/checkCart.js'
+import {checkCart} from '../utils/auxFunc.js'
 
 
 const __dirname = url.fileURLToPath(new url.URL('.', import.meta.url))
@@ -26,8 +26,8 @@ export const GETPROD = (req, res) => {
 }
 
 export const GETUSER = async(req, res) => {
-    let activeCart= await checkCart(req.user.carts)
-    let dataUser = new sendUserDTO(req.user ,activeCart)
+    let activeCart= await checkCart(req.user._id)
+    let dataUser = new sendUserDTO(req.user,activeCart)
     res.send(dataUser)
 }
 

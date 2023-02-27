@@ -5,9 +5,9 @@ import config from "../config.js"
 const sessionOptions = {
     secret: config.session.secret,
     resave: true,
-    rolling: true, //resetea el tiempo de expiracion al tener session activa
+    rolling: true, 
     saveUninitialized: false,
-    cookie: { maxAge: 600000 },//expira en 10 min si no hay actividad
+    cookie: { maxAge: 600000 },
     store: MongoStore.create({
         mongoUrl: config.session.url,
         mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },

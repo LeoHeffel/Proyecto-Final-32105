@@ -1,11 +1,9 @@
 export  class saveProductDTO {
-    constructor({ nombre, descripcion, codigo, url, precio, stock,categoria}){
+    constructor({ nombre, descripcion,  url, precio, categoria}){
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.codigo = codigo;
         this.url = url,
         this.precio= parseFloat(precio),
-        this.stock = parseInt(stock),
         this.categoria = categoria;
     }
 }

@@ -11,7 +11,6 @@ export  class saveUserDTO {
         this.age = age
         this.phone = phone
         this.photo = photo || null
-        this.carts = []
     }
 }
 

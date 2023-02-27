@@ -10,15 +10,15 @@ import DAOUserFactory from './DAOSUserFactory.js';
 class DAOusersMongo extends DAOUserFactory {
     constructor() {
         super('users', {
-            email: { type: String, required: true },
+            email: { type: String, required: true , unique: true },
             password: { type: String, required: true },
-            username: { type: String, required: true, unique: true },
+            username: { type: String, required: true},
             address: { type: String, required: true },
             age: { type: Number, required: true },
             phone: { type: String, required: true },
             photo: { type: String, required: false, default: "" },
             admin: { type: Boolean, default: false },
-            carts: { type: Array, default: [] }
+            //carts: { type: Array, default: [] }
         })
 
     }
@@ -43,9 +43,10 @@ class DAOusersMongo extends DAOUserFactory {
         }
     }
 
-    login = async (username, password, done) => {
+    login = async (email, password, done) => {
+        console.log(email,password)
         try {
-            const user = await this.db.findOne({ username })
+            const user = await this.db.findOne({ email })
             if (!user) return done(null, false)
             compare(password, user.password) ? done(null, user) : done(null, false)
         } catch (err) {
@@ -61,7 +62,7 @@ class DAOusersMongo extends DAOUserFactory {
             logguer.error(`hubo un error al deserializar usuario  ${err}`)
         }
     }
-
+/* 
     addCart = async (idCarrito, idUser) => {
         try {
             const user = await this.db.findById(idUser)
@@ -77,7 +78,7 @@ class DAOusersMongo extends DAOUserFactory {
         } catch (err) {
             logguer.error(`hubo un error al agregar carrito al usuario  ${err}`)
         }
-    }
+    } */
 }
 
 

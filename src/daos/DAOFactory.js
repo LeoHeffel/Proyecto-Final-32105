@@ -6,11 +6,13 @@ const daos = {
         const { default: DAOproductosMongo } = await import('./productos/DAOproductosMongo.js')
         const { default: DAOusersMongo } = await import('./usuarios/DAOusersMongo.js')
         const { default: DAOmensajesMongo } = await import('./mensajes/DAOmensajesMongo.js')
+        const { default: DAOordenesMongo } = await import('./ordenes/DAOordenesMongo.js')
         return {
             DAOcarritos: new DAOcarritoMongo,
             DAOproductos: new DAOproductosMongo,
             DAOusers: new DAOusersMongo,
-            DAOmensajes: new DAOmensajesMongo
+            DAOmensajes: new DAOmensajesMongo,
+            DAOordenes: new DAOordenesMongo
         }
     },
     mem: async () => {

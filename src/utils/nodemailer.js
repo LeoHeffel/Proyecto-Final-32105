@@ -42,6 +42,7 @@ function correo(tipo, datos) {
 
 
         html = ` 
+        Numero de orden:${datos.numero}
         Nombre:${datos.usuario.username}
         Email: ${datos.usuario.email}
         Detalle de la Compra:
