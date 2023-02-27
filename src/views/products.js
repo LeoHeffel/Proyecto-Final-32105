@@ -6,11 +6,9 @@ const view = `
         <form  action="/api/productos" method=POST class="row g-3">
             <input id="nombre" type="text" placeholder="Ingrese titulo" name="nombre" class="form-control" required>
             <input id="descripcion" type="text" placeholder="Ingrese descripcion" name="descripcion" class="form-control" required>
-            <input id="codigo" type="text" placeholder="Ingrese codigo" name="codigo" class="form-control" required>
             <input id="cat" type="text" placeholder="Ingrese una categoria" name="categoria" class="form-control" required>
             <input id="url" type="text" placeholder="Ingrese url imagen" name="url" class="form-control" required>
             <input id="precio" type="number" placeholder="Ingrese precio" name="precio" class="form-control" required>
-            <input id="stock" type="number" placeholder="Ingrese stock" name="stock" class="form-control" required>
             <input id="submit" type="submit" value="enviar" class="btn btn-primary mb-3">
         </form>
 

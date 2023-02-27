@@ -5,7 +5,7 @@ dotenv.config()
 export default{
     mongoDB:{
         uri:process.env.DB_USERS,
-        options: {serverSelectionTimeoutMS: 5000}
+        options: {serverSelectionTimeoutMS:process.env.TIMEOUT}
     },
     twilio:{
         token:process.env.TWILIO_TOKEN,
@@ -21,5 +21,6 @@ export default{
         secret:process.env.SECRET_SESSION,
         url:process.env.DB_SESION
     },
-    modo: process.env.MODO
+    modo: process.env.MODO,
+    port: process.env.PORTALT
 }

@@ -1,7 +1,7 @@
 import express from 'express'
 
 import passport from '../utils/passport.js'
-import { auth } from '../utils/authMiddlewares.js'
+import { auth ,isAdmin} from '../utils/authMiddlewares.js'
 import { upload } from '../utils/multer.js'
 import * as UsuarioService from '../services/usuario.service.js'
 
@@ -29,7 +29,7 @@ router.get('/user',  auth,  UsuarioService.GETUSER)
 
 router.get('/logout', UsuarioService.GETOUT)
 
-
-
+router.get('/config',  auth, isAdmin, UsuarioService.GETCONFIG)
+router.post('/config',  auth, isAdmin, UsuarioService.SETCONFIG)
 
 export default router

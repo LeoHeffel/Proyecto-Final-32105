@@ -5,7 +5,7 @@ import httpServer from './src/server.js'
 import config from './src/config.js'
 
 let modo = config.modo
-const PORT = process.env.PORT || 8081
+const PORT = process.env.PORT || config.port
 
 
 if (modo === 'cluster') {
