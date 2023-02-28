@@ -2,7 +2,6 @@
 import logguer from "../../utils/logger.js";
 
 import DAOCartFactory from "./DAOCartFactory.js";
-//import { finalizar } from "../../utils/auxFunc.js";
 
 
 class DAOcarritosMongo extends DAOCartFactory {

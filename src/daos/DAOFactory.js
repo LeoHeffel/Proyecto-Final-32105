@@ -15,31 +15,6 @@ const daos = {
             DAOordenes: new DAOordenesMongo
         }
     },
-    mem: async () => {
-        const { default: DAOcarritosMem } = await import('./carritos/DAOcarritosMem.js.js')
-        const { default: DAOproductosMem } = await import('./productos/DAOproductosMem.js.js')
-        return {
-            DAOcarritos: new DAOcarritosMem,
-            DAOproductos: new DAOproductosMem
-        }
-    },
-    firebase: async () => {
-        const { default: DAOcarritosFirebase } = await import('./carritos/DAOcarritosFirebase.js.js')
-        const { default: DAOproductosFirebase } = await import('./productos/DAOproductosFirebase.js.js')
-        return {
-            DAOcarritos: new DAOcarritosFirebase,
-            DAOproductos: new DAOproductosFirebase
-        }
-    },
-    fs: async () => {
-        const { default: DAOcarritosFs } = await import('./carritos/DAOcarritosFs.js.js')
-        const { default: DAOproductosFs } = await import('./productos/DAOproductosFs.js.js')
-        return {
-            DAOcarritos: new DAOcarritosFs,
-            DAOproductos: new DAOproductosFs
-        }
-    }
-
 }
 
 

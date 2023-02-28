@@ -37,7 +37,7 @@ export const finalizar = async (prodIds, user, idCarrito) => {
 
     const items = await getProds(prodIds)
    
-    const orden = await dbOrdenes.save({items,numero:idCarrito,email:user.email})
+    const orden = await dbOrdenes.save({items,numero:idCarrito,email:user.email,estado:'generada',timestamp: new Date()})
     
     correo('pedido', { productos: items, usuario: user ,numero:orden})
   

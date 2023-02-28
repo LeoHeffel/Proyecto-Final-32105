@@ -2,12 +2,12 @@ import { compare } from '../../utils/bcrypt.js';
 import {saveUserDTO} from '../../dtos/usuario.dto.js';
 import correo from '../../utils/nodemailer.js';
 import logguer from '../../utils/logger.js';
-import DAOUserFactory from './DAOSUserFactory.js';
+
+import Contenedor from "../../containers/containerMongo.js";
 
 
 
-
-class DAOusersMongo extends DAOUserFactory {
+class DAOusersMongo extends Contenedor {
     constructor() {
         super('users', {
             email: { type: String, required: true , unique: true },
@@ -18,7 +18,6 @@ class DAOusersMongo extends DAOUserFactory {
             phone: { type: String, required: true },
             photo: { type: String, required: false, default: "" },
             admin: { type: Boolean, default: false },
-            //carts: { type: Array, default: [] }
         })
 
     }

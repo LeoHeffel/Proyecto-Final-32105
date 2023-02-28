@@ -1,16 +1,12 @@
+import Contenedor from "../../containers/containerMongo.js";
 
-
-import DAOordenesFactory from "./DAOordenesFactory.js";
-
-
-
-class DAOordenesMongo extends DAOordenesFactory {
+class DAOordenesMongo extends Contenedor {
     constructor() {
         super('ordenes', {
-            email: { type: String, default: "" },
-            items: { type: Array, default: [] },
-            numero: { type: String, default: "" },
-            timestamp: { type: String, required: true, default: new Date() },
+            email: { type: String, required: true },
+            items: { type: Array, default: [],required: true },
+            numero: { type: String, required: true },
+            timestamp: { type: String, required: true },
             estado: { type: String, default: 'generada' }
         })
     }

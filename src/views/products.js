@@ -1,5 +1,9 @@
 
 const view = `
+<a href="/config" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+           
+<span class="fs-4" id="saludo">CONFIGURACION.</span> 
+</a>
 <div class="container  mt-3">
         <h1>Cargar Nuevo Producto</h1>
        

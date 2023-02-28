@@ -17,7 +17,7 @@ const ver = `
             <input id="mailServidor" type="text" placeholder="Email Servidor " name="mailServidor" class="form-control" value="{{mailServidor}}"required>
             Pasword Email Servidor
             <input id="passServidor" type="text" placeholder="Pasword Email Servidor" name="passServidor" class="form-control" value="{{passServidor}}"required>
-            Modo Funcionamiento (fork o cluster)
+            Modo Funcionamiento (dev o production)
             <input id="modo" type="text" placeholder="Modo Funcionamiento" name="modo" class="form-control" value="{{modo}}"required>
             Puerto
             <input id="port" type="text" placeholder="Puerto" name="port" class="form-control" value="{{port}}"required>
