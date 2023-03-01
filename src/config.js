@@ -4,7 +4,7 @@ dotenv.config()
 
 export default{
     mongoDB:{
-        uri:process.env.DB_USERS,
+        uri:process.env.MODO=='dev'?process.env.DB_USERS_DEV:process.env.DB_USERS,
         options: {serverSelectionTimeoutMS:process.env.TIMEOUT}
     }, 
     tipoBD:process.env.TIPO,
@@ -15,7 +15,8 @@ export default{
     },
     session:{
         secret:process.env.SECRET_SESSION,
-        url: process.env.DB_SESION
+        url:process.env.MODO=='dev'? process.env.DB_SESION_DEV:process.env.DB_SESION
     },
-    port: process.env.PORTALT
+    port: process.env.PORTALT,
+    modo:'production'
 }

@@ -1,6 +1,8 @@
 import express from 'express'
+
 import { auth } from '../utils/authMiddlewares.js'
 import * as CarritoService from '../services/carrito.service.js'
+
 const { Router } = express
 const routerCarrito = Router()
 

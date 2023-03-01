@@ -1,10 +1,8 @@
-
 import logguer from "../../utils/logger.js";
+import Contenedor from "../../containers/containerMongo.js";
 
-import DAOCartFactory from "./DAOCartFactory.js";
 
-
-class DAOcarritosMongo extends DAOCartFactory {
+class DAOcarritosMongo extends Contenedor {
     constructor() {
         super('carritos', {
             email: { type: String, default: "" },

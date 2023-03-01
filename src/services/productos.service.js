@@ -2,6 +2,7 @@ import logguer from '../utils/logger.js'
 import daos from '../daos/DAOFactory.js'
 import { saveProductDTO } from '../dtos/products.dto.js'
 import { sendProductDTO } from '../dtos/products.dto.js'
+
 const DB = daos.DAOproductos
 
 export const GET = async (req, res) => {
@@ -53,7 +54,6 @@ export const GETCAT = async (req, res) => {
 
 export const GETSEL = async (req, res) => {
         const { selector } = req.params
-       // const select= selector.slice(0,2)
         if(selector.length===24){
             GETID(req,res)
         }else{
@@ -62,12 +62,12 @@ export const GETSEL = async (req, res) => {
    
 }
 export const POST = async (req, res) => {
-    const { nombre, descripcion, codigo, url, precio, stock ,categoria} = req.body
-    if (!nombre || !descripcion || !codigo || !url || !precio || !stock || !categoria) {
+    const { nombre, descripcion, url, precio,categoria} = req.body
+    if (!nombre || !descripcion || !url || !precio  || !categoria) {
         logguer.warn('faltan datos del nuevo producto o son incorrectos')
         return res.status(406).send({ error: 'faltan datos del nuevo producto o son incorrectos' })
     }
-    const producto = new saveProductDTO({ nombre, descripcion, codigo, url, precio, stock,categoria })
+    const producto = new saveProductDTO({ nombre, descripcion,  url, precio, categoria })
     try {
         const data = await DB.save(producto)
         producto.id = data
@@ -119,18 +119,3 @@ export const DELETEID = async (req, res) => {
     }
 }
 
-export const DELETE = async (req, res) => {
-    try {
-        const data = await DB.deleteAll()
-        if (data) {
-            logguer.warn(`se borraron todos los productos `)
-            res.status(200).send(data)
-        } else {
-            logguer.warn(`error al borrar todos los productos`)
-            res.status(404).send({ error: 'producto no encontrado' })
-        }
-    } catch (err) {
-        logguer.error(`error al eliminar todos los productos ${err} `)
-        res.status(500).send({ error: true, err })
-    }
-}

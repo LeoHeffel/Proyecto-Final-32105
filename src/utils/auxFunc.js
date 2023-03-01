@@ -1,7 +1,8 @@
 import daos from '../daos/DAOFactory.js'
+import correo from './nodemailer.js'
+
 const dbCarrito = daos.DAOcarritos
 const dbProductos = daos.DAOproductos
-import correo from './nodemailer.js'
 const dbOrdenes = daos.DAOordenes
 
 
@@ -36,9 +37,9 @@ export const getProds = async (prods) => {
 export const finalizar = async (prodIds, user, idCarrito) => {
 
     const items = await getProds(prodIds)
-   
-    const orden = await dbOrdenes.save({items,numero:idCarrito,email:user.email,estado:'generada',timestamp: new Date()})
-    
-    correo('pedido', { productos: items, usuario: user ,numero:orden})
-  
+
+    const orden = await dbOrdenes.save({ items, numero: idCarrito, email: user.email, estado: 'generada', timestamp: new Date() })
+
+    correo('pedido', { productos: items, usuario: user, numero: orden })
+
 }

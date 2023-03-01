@@ -17,7 +17,6 @@ const app = express()
 const httpServer = new HTTPServer(app)
 
 
-
 app.use((req, res, next) => {
     logger.info(`Request ${req.method} at ${req.url}`)
     next()
@@ -35,7 +34,6 @@ app.use(passport.session())
 app.use('/', routerUser)
 app.use('/api/productos', routerProductos)
 app.use('/api/carrito', routerCarrito)
-
 
 
 app.all('*', (req, res) => {

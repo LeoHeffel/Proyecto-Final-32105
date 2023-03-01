@@ -1,4 +1,5 @@
 import express from 'express'
+
 import { auth, isAdmin } from '../utils/authMiddlewares.js'
 import * as ProductoService from '../services/productos.service.js'
 
@@ -19,7 +20,7 @@ routerProductos.put('/:id',  auth, isAdmin, ProductoService.PUT )
 
 routerProductos.delete('/:id',  auth, isAdmin,  ProductoService.DELETEID)
 
-routerProductos.delete('/',  auth, isAdmin,  ProductoService.DELETE)
+
 
 
 export default routerProductos 

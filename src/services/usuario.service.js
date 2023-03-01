@@ -1,5 +1,6 @@
 import url from 'url'
 import { join } from 'path'
+
 import logger from "../utils/logger.js"
 import { sendUserDTO } from '../dtos/usuario.dto.js'
 import {checkCart} from '../utils/auxFunc.js'
@@ -13,6 +14,7 @@ const rutaRegister = join(__dirname, "../views/register.html")
 const rutaRegisterError = join(__dirname, "../views/registerError.html")
 const rutaLoginError = join(__dirname, "../views/loginError.html")
 const rutaConfig = join(__dirname, "../views/config.html")
+
 export const GET = (req, res) => {
     res.redirect("/productos")
 }
@@ -29,7 +31,7 @@ export const GETPROD = (req, res) => {
 export const GETUSER = async(req, res) => {
     let activeCart= await checkCart(req.user._id)
     let dataUser = new sendUserDTO(req.user,activeCart)
-    res.send(dataUser)
+    res.status(200).send(dataUser)
 }
 
 

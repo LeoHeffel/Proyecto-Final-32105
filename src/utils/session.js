@@ -5,7 +5,7 @@ import config from "../config.js"
 const sessionOptions = {
     secret: config.session.secret,
     resave: true,
-    rolling: true, 
+    rolling: true,
     saveUninitialized: false,
     cookie: { maxAge: 600000 },
     store: MongoStore.create({

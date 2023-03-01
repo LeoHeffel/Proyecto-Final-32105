@@ -1,5 +1,6 @@
 import Contenedor from "../../containers/containerMongo.js";
 import logguer from "../../utils/logger.js";
+
 class DAOmensajesMongo extends Contenedor {
     constructor() {
         

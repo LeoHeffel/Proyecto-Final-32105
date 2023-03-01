@@ -1,6 +1,7 @@
 import logguer from '../utils/logger.js'
 import daos from '../daos/DAOFactory.js'
 import {getProds,finalizar} from '../utils/auxFunc.js'
+
 const dbCarrito= daos.DAOcarritos
 const DB = daos.DAOproductos
 
@@ -47,7 +48,7 @@ export const POST=async(req,res)=>{
         res.send({idCarrito})
     }catch(err){
         logguer.error(`error al crear carrito para el usuario ${emailUser} : ${err}`)
-            res.send({error: true, err})
+            res.status(400).send({error: true, err})
         }
 }
 
@@ -70,7 +71,7 @@ export const POSTID = async(req,res)=>{
     }
     }catch(err){
         logguer.error(`error al agregar producto al carrito ${err}`)
-        res.send({error: true, err})
+        res.status(400).send({error: true, err})
     }
 }
 
@@ -87,7 +88,7 @@ export const DELPROD =async(req,res)=>{
     }
     }catch(err){
         logguer.error(`error al borrar producto ${id_prod} del carrito ${id} ${err} `)
-        res.send({error: true, err})
+        res.status(400).send({error: true, err})
     } 
 }
 
@@ -106,6 +107,6 @@ export const DELCAR = async(req,res)=>{
     }
     }catch(err){
         logguer.error(`error al borrar el carrito id ${id} : ${err} `)
-        res.send({error: true, err})
+        res.status(400).send({error: true, err})
     } 
 }
