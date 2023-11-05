@@ -1,9 +1,10 @@
 import logger from "./logger.js"
 
-const auth = (req, res, next) => {
+ const auth = (req, res, next) => {
     logger.info(`request de autorizacion`)
     req.isAuthenticated() ? next() : res.redirect('/login')
-}
+} 
+
 
 const isAdmin = (req, res, next) => {
 

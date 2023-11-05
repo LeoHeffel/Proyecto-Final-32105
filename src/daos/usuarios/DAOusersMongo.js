@@ -43,10 +43,10 @@ class DAOusersMongo extends Contenedor {
     }
 
     login = async (email, password, done) => {
-        console.log(email,password)
         try {
             const user = await this.db.findOne({ email })
             if (!user) return done(null, false)
+            
             compare(password, user.password) ? done(null, user) : done(null, false)
         } catch (err) {
             logguer.error(`hubo un error al loguear usuario  ${err}`)
@@ -54,6 +54,7 @@ class DAOusersMongo extends Contenedor {
     }
 
     find = async (id, done) => {
+        console.log('id', id)
         try {
     
             this.db.findById(id, done)
@@ -61,23 +62,7 @@ class DAOusersMongo extends Contenedor {
             logguer.error(`hubo un error al deserializar usuario  ${err}`)
         }
     }
-/* 
-    addCart = async (idCarrito, idUser) => {
-        try {
-            const user = await this.db.findById(idUser)
-            user.carts.push(idCarrito)
-            const resutl = await this.db.updateOne({ _id: idUser }, { carts: user.carts })
-            if (resutl.modifiedCount === 1) {
-                logguer.info(`carrito :${idCarrito} agregado al usuario ${idUser}`)
-                return user.carts
-            } else {
-                logguer.warn(`carrito no agregado `)
-                return { error: "Carrito no encontrado" }
-            }
-        } catch (err) {
-            logguer.error(`hubo un error al agregar carrito al usuario  ${err}`)
-        }
-    } */
+
 }
 
 

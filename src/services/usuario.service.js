@@ -6,6 +6,7 @@ import { sendUserDTO } from '../dtos/usuario.dto.js'
 import {checkCart} from '../utils/auxFunc.js'
 import config from '../config.js'
 import {guardar} from '../utils/fs.js'
+import { generateToken } from '../utils/generateToken.js'
 
 const __dirname = url.fileURLToPath(new url.URL('.', import.meta.url))
 const rutaProdHtml = join(__dirname, "../views/products.html")
@@ -36,7 +37,7 @@ export const GETUSER = async(req, res) => {
 
 
 export const GETOUT = (req, res) => {
-    req.session.destroy()
+    res.clearCookie('cookieLogin');
     logger.info('Session cerrada')
     res.redirect("/")
 }
@@ -48,6 +49,9 @@ export const GETREGERR = (req, res) => {
     res.sendFile(rutaRegisterError)
 }
 export const POST = (req, res) => {
+    const user = req.user;
+    const token = generateToken(user);
+    res.cookie('cookieLogin', token, {maxAge: 43200000, /* httpOnly: true */});
     res.sendFile(rutaProdHtml)
 }
 export const GETCONFIG = (req, res) => {
