@@ -1,10 +1,10 @@
 import logger from "./logger.js"
-
- const auth = (req, res, next) => {
+import passport from '../utils/passport.js'
+/*  const auth = (req, res, next) => {
     logger.info(`request de autorizacion`)
     req.isAuthenticated() ? next() : res.redirect('/login')
-} 
-
+}  */
+const auth=passport.authenticate('jwtAuth', {failureRedirect: '/login', session: false}) 
 
 const isAdmin = (req, res, next) => {
 

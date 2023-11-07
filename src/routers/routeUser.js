@@ -9,7 +9,7 @@ const { Router } = express
 const router = Router()
 
 
-router.get('/', passport.authenticate('jwtAuth', {failureRedirect: '/login', session: false}) , UsuarioService.GET )
+router.get('/', auth, UsuarioService.GET )
 
 router.get('/login',UsuarioService.GETLOG )
 
@@ -19,20 +19,19 @@ router.get('/register',UsuarioService.GETREG)
 
 router.post('/register', upload.single('photo'), passport.authenticate('register', { failureRedirect: '/registerError' }), UsuarioService.POST)
 
-router.get('/productos',  passport.authenticate('jwtAuth', {failureRedirect: '/login', session: false}),  UsuarioService.GETPROD )
+router.get('/productos', auth,  UsuarioService.GETPROD )
 
-router.get('/coso',  passport.authenticate('jwtAuth', {failureRedirect: '/login', session: false}), (req, res) => res.send(req.user) )
+router.get('/coso', auth, (req, res) => res.send(req.user) )
 
 router.get('/loginError', UsuarioService.GETLOGERR)
 
 router.get('/registerError', UsuarioService.GETREGERR)
 
-router.get('/user',  passport.authenticate('jwtAuth', {failureRedirect: '/login', session: false}),  UsuarioService.GETUSER)
+router.get('/user',  auth,  UsuarioService.GETUSER)
 
 router.get('/logout', UsuarioService.GETOUT)
 
-router.get('/config',  passport.authenticate('jwtAuth', {failureRedirect: '/api/sessions/fail-login', session: false}), isAdmin, UsuarioService.GETCONFIG)
-router.post('/config',  passport.authenticate('jwtAuth', 
-{failureRedirect: '/api/sessions/fail-login', session: false}), isAdmin, UsuarioService.SETCONFIG)
+router.get('/config', auth, isAdmin, UsuarioService.GETCONFIG)
+router.post('/config',  auth, isAdmin, UsuarioService.SETCONFIG)
 
 export default router

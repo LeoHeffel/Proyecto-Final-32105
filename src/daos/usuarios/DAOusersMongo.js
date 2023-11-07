@@ -4,6 +4,7 @@ import correo from '../../utils/nodemailer.js';
 import logguer from '../../utils/logger.js';
 
 import Contenedor from "../../containers/containerMongo.js";
+import e from 'express';
 
 
 
@@ -43,6 +44,7 @@ class DAOusersMongo extends Contenedor {
     }
 
     login = async (email, password, done) => {
+        console.log('data login', email, password)
         try {
             const user = await this.db.findOne({ email })
             if (!user) return done(null, false)

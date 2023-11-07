@@ -1,7 +1,7 @@
 import express from "express"
 import { Server as HTTPServer } from "http"
 import session from "express-session"
-
+import cookieParser from "cookie-parser"
 
 import routerUser from "./routers/routeUser.js"
 import routerProductos from './routers/routeProductos.js'
@@ -25,6 +25,7 @@ app.use((req, res, next) => {
 app.use(express.static('./src/views'))
 app.use(express.static('public/perfiles'))
 app.use(express.json());
+app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
 app.use(session(sessionOptions))
 
